@@ -1,0 +1,215 @@
+<html>
+
+    <head>
+<script type="text/javascript">
+
+var previd;
+
+var counter =60;
+var interval = setInterval(function() {
+    counter--;
+    // Display 'counter' wherever you want to display it.
+    if (counter < 0) {
+document.getElementById("time").innerHTML=0;
+      clearInterval(interval);
+      //$('#timer').html("<h3>Count down complete</h3>");  
+if (confirm("Do you want to restart")) {
+   location.reload();
+  } else {
+   // txt = "You pressed Cancel!";
+  }
+//document.getElementById("time").innerHTML='Count down complete';
+        return;
+    }else{
+    //$('#time').text(counter);
+
+document.getElementById("time").innerHTML=counter;
+      console.log("Timer --> " + counter);
+    }
+}, 1000);
+
+
+
+var row ;
+var col ;
+var score=0;
+function createTable(){
+
+
+var numberarray=getNumbers();
+
+var ncounter=0;
+
+                var x_start = 0;
+
+                var x_end = 10;
+
+                var y_start = 0;
+
+                var y_end = 10;
+var cnum = JSON.parse(JSON.stringify(Math.floor(Math.random() * Math.floor(99))));
+
+                // loop over all x values (rows) sequentally
+
+                for( var x=x_start; x < x_end; x++ ){
+
+
+                    // open the current row
+var trID = 'tr'+x;
+
+                    document.write('<tr id='+trID +'>');
+
+                    // loop over all y values (cols) sequentally
+document.getElementById(trID ).style.background= 'Yellow';
+
+
+                    for( var y=y_start; y < y_end; y++ ){
+
+                        // write out the current x/y coordinate with a table cell
+var id =  'td'+x+y;
+//var data = ''+x+''+'-'+y+''+'|'+''+row+'-'+''+col;
+
+if(ncounter==cnum){
+previd=id;
+                        document.write('<td id='+id+'>'+numberarray[ncounter]+'</td>');
+document.getElementById(id).addEventListener("click", onSet);
+
+}else{
+document.write('<td id='+id+'>'+numberarray[ncounter]+'</td>');
+
+}
+ncounter++;
+document.getElementById(id).style.width = "40px";
+document.getElementById(id).style.height = "40px";
+                }
+
+                    // end the current row
+
+                    document.write('</tr>');
+
+                }
+
+document.getElementById('p2').innerHTML= 'Find this number ='+numberarray[cnum];    
+}
+
+   function onSet()
+   {
+//alert(data);
+       changeContent();
+   }
+function getNumbers(){
+ var x_start = 0;
+var numberarray=[];
+                var x_end = 10;
+
+                var y_start = 0;
+
+                var y_end = 10;
+
+var xcounter=0;
+
+
+for(var i = 0;xcounter<x_end;i++){
+var ycounter = 0;
+for(var y = 0;ycounter<y_end;y++){
+
+var num = JSON.parse(JSON.stringify(Math.floor(Math.random() * Math.floor(100))));
+
+if(!numberarray.includes(num)){
+
+numberarray.push(num);
+ycounter++;
+}
+
+}
+xcounter++;
+}
+
+return numberarray;
+}
+function changeContent()
+{
+
+
+var numberarray=getNumbers();
+
+score=score+1;
+
+document.getElementById("p1").innerHTML = "Score = "+score;
+                var x_start = 0;
+
+                var x_end = 10;
+
+                var y_start = 0;
+
+                var y_end = 10;
+
+
+var ncounter=0;
+
+document.getElementById(previd ).removeEventListener("click", onSet);
+var cnum = JSON.parse(JSON.stringify(Math.floor(Math.random() * Math.floor(99))));
+
+for( var x=x_start; x < x_end; x++ ){
+
+var trID = 'tr'+x;
+
+document.getElementById(trID ).style.background= 'Yellow';    
+
+  // var allRows=document.getElementById('myTable').rows[parseInt(x,10)].cells;
+for( var y=y_start; y < y_end; y++ ){
+ 
+ var newid = 'td'+x+y;
+
+
+ document.getElementById(newid).innerHTML= numberarray[ncounter];
+if(ncounter==cnum){
+previd=newid;
+                       
+document.getElementById(newid).addEventListener("click", onSet);
+
+}
+ncounter++;
+
+ }
+ 
+
+}
+
+document.getElementById('p2').innerHTML= 'Find this number ='+numberarray[cnum];    
+
+
+}
+  </script>
+        <title>A tabular grid generated with javascript via x/y for loops</title>
+
+    </head>
+
+    <body>
+
+     
+
+<div>
+
+  <span id="timer">
+   <span><p id="p1">Score = 0</p> <span id="time"> 60 </span> Seconds </span>      
+  </span>
+   <span><p id="p2">Find this number = 0</p>  </span>      
+</div>
+
+
+
+
+        <table id="myTable" border="1">
+
+            <script language="JavaScript">
+createTable();
+                // define x/y coordinate ranges
+
+            </script>
+
+        </table>
+
+    </body>
+
+</html>

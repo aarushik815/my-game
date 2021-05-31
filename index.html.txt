@@ -1,0 +1,27 @@
+RushiProject
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript">
+function opennumber(){
+window.location.href = '/RushiProject/numberg.html';
+}
+function opencolor(){
+window.location.href = '/RushiProject/colorg.html';
+}
+</script>
+</head>
+<body>
+
+<H1>Please  select the game you want to play</H1>
+   <div>
+
+ <button  onclick="opencolor()">Color game</button>
+ <button  onclick="opennumber()">Number game</button>
+ <button  onclick="openCity(event, 'Tokyo')">Word game</button>
+</div>
+</div>
+ 
+</body>
+</html>

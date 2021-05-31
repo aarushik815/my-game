@@ -1,0 +1,248 @@
+html
+
+    head
+script type=textjavascript
+let colors = [
+  {
+    col #9CFF88,
+    alt #7DF481,
+  },
+{
+    col #9CFF88,
+    alt #75DB1B,
+  },
+  {
+    col #9CFF88,
+    alt #05E177,
+  },
+  {
+    col #9CFF88,
+    alt #22EE5B,
+  },
+  {
+    col #9CFF88,
+    alt #3ED715,
+  },
+ 
+ 
+   {
+    col #14140A,
+    alt #1F1F0F,
+  },
+{
+    col #1F1F0F,
+    alt #14140A,
+  },
+  {
+    col #1F1F0F,
+    alt #292914,
+  },
+  {
+    col #292914,
+    alt #1F1F0F,
+  },
+  {
+    col #292914,
+    alt #33331A,
+  },
+ 
+ 
+   {
+    col #33331A,
+    alt #292914,
+  },
+ 
+   {
+    col #33331A,
+    alt #3D3D1F,
+  },
+{
+    col #3D3D1F,
+    alt #33331A,
+  },
+  {
+    col #1F1F0F,
+    alt #3D3D1F,
+  },
+  {
+    col #292914,
+    alt #474724,
+  },
+  {
+    col #474724,
+    alt #3D3D1F,
+  },
+ 
+];
+
+var counter =60;
+var interval = setInterval(function() {
+    counter--;
+     Display 'counter' wherever you want to display it.
+    if (counter  0) {
+document.getElementById(time).innerHTML=0;
+      clearInterval(interval);
+      $('#timer').html(h3Count down completeh3);  
+if (confirm(Do you want to restart)) {
+   location.reload();
+  } else {
+    txt = You pressed Cancel!;
+  }
+document.getElementById(time).innerHTML='Count down complete';
+        return;
+    }else{
+    $('#time').text(counter);
+
+document.getElementById(time).innerHTML=counter;
+      console.log(Timer --  + counter);
+    }
+}, 1000);
+
+
+
+var row ;
+var col ;
+var score=0;
+function createTable(){
+
+var index= Math.floor(Math.random()  Math.floor(colors.length));
+var cdata = colors[index];
+                var x_start = 0;
+
+                var x_end = 10;
+
+                var y_start = 0;
+
+                var y_end = 10;
+
+row = JSON.parse(JSON.stringify(Math.floor(Math.random()  Math.floor(9))));
+col = JSON.parse(JSON.stringify(Math.floor(Math.random()  Math.floor(9))));
+
+                 loop over all x values (rows) sequentally
+
+                for( var x=x_start; x  x_end; x++ ){
+
+
+                     open the current row
+var trID = 'tr'+x;
+
+                    document.write('tr id='+trID +'');
+
+                     loop over all y values (cols) sequentally
+document.getElementById(trID ).style.background= cdata.col;
+
+
+                    for( var y=y_start; y  y_end; y++ ){
+
+                         write out the current xy coordinate with a table cell
+var id =  'td'+x+y;
+var data = ''+x+''+'-'+y+''+''+''+row+'-'+''+col;
+
+if(x==row && y==col){
+
+                        document.write('td id='+id+'td');
+document.getElementById(id).addEventListener(click, onSet);
+
+}else{
+document.write('td id='+id+'td');
+
+}
+
+document.getElementById(id).style.width = 40px;
+document.getElementById(id).style.height = 40px;
+                }
+
+                     end the current row
+
+                    document.write('tr');
+
+                }
+var tdid =  'td'+row+col;
+document.getElementById(tdid).style.background= cdata.alt;    
+}
+
+   function onSet()
+   {
+alert(data);
+       changeContent();
+   }
+
+function changeContent()
+{
+
+var index= Math.floor(Math.random()  Math.floor(colors.length));
+var ndata = colors[index];
+
+score=score+1;
+
+document.getElementById(p1).innerHTML = Score = +score;
+                var x_start = 0;
+
+                var x_end = 10;
+
+                var y_start = 0;
+
+                var y_end = 10;
+
+var oldid =  'td'+row+col;
+
+document.getElementById(oldid ).removeEventListener(click, onSet);
+
+document.getElementById(oldid ).style.background= ndata.col;    
+
+row = JSON.parse(JSON.stringify(Math.floor(Math.random()  Math.floor(9))));
+col = JSON.parse(JSON.stringify(Math.floor(Math.random()  Math.floor(9))));
+
+for( var x=x_start; x  x_end; x++ ){
+
+var trID = 'tr'+x;
+
+document.getElementById(trID ).style.background= ndata.col;    
+
+
+   var allRows=document.getElementById('myTable').rows[parseInt(x,10)].cells;
+for( var y=y_start; y  y_end; y++ ){
+ 
+ var newid = 'td'+x+y;
+document.getElementById(newid).style.background= ndata.col;
+ }
+ 
+
+}
+var tdid =  'td'+row+col;
+document.getElementById(tdid).style.background= ndata.alt;    
+document.getElementById(tdid ).addEventListener(click, onSet);
+
+}
+  script
+        titleA tabular grid generated with javascript via xy for loopstitle
+
+    head
+
+    body
+
+     
+
+div
+
+  span id=timer
+   spanp id=p1Score = 0p span id=time 60 span Seconds span      
+  span
+div
+
+
+
+
+        table id=myTable border=1
+
+            script language=JavaScript
+createTable();
+                 define xy coordinate ranges
+
+            script
+
+        table
+
+    body
+
+html
